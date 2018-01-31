@@ -1,11 +1,11 @@
 // @flow
-import * as React from 'react';
-import type { Web, Path } from './Editor';
-import Head from 'next/head';
-import Box from '../Box';
-import PageStyle from '../PageStyle';
-import EditorElement, { getElementKey } from './EditorElement';
-import MetaViewport from '../MetaViewport';
+import * as React from 'react'
+import type { Web, Path } from './Editor'
+import Head from 'next/head'
+import Box from '../Box'
+import PageStyle from '../PageStyle'
+import EditorElement, { getElementKey } from './EditorElement'
+import MetaViewport from '../MetaViewport'
 
 type EditorPageProps = {|
   web: Web,
@@ -13,11 +13,11 @@ type EditorPageProps = {|
   pageName: string,
   paddingBottomPx: number,
   activePath: Path,
-|};
+|}
 
 class EditorPage extends React.PureComponent<EditorPageProps> {
   render() {
-    const { web, webName, pageName, paddingBottomPx, activePath } = this.props;
+    const { web, webName, pageName, paddingBottomPx, activePath } = this.props
     return (
       <Box
         minHeight="100vh" // Emulate React Native so flex 1 works as expected.
@@ -39,8 +39,8 @@ class EditorPage extends React.PureComponent<EditorPageProps> {
           />
         ))}
       </Box>
-    );
+    )
   }
 }
 
-export default EditorPage;
+export default EditorPage

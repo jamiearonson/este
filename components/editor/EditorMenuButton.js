@@ -1,17 +1,17 @@
 // @flow
-import * as React from 'react';
-import Button, { type ButtonProps } from '../Button';
-import { editorMenuItemProps, type SectionName } from './EditorMenu';
-import type { Path } from './Editor';
-import EditorDispatch from './EditorDispatch';
-import RovingTabIndex from '../RovingTabIndex';
+import * as React from 'react'
+import Button, { type ButtonProps } from '../Button'
+import { editorMenuItemProps, type SectionName } from './EditorMenu'
+import type { Path } from './Editor'
+import EditorDispatch from './EditorDispatch'
+import RovingTabIndex from '../RovingTabIndex'
 
 type EditorMenuButtonProps = {
   active?: boolean,
   path?: Path,
   section?: SectionName,
   back?: boolean,
-} & ButtonProps;
+} & ButtonProps
 
 // This is just an example how we can compose components to avoid nesting.
 const DispatchWithRovingTabIndex = ({ children }) => (
@@ -24,7 +24,7 @@ const DispatchWithRovingTabIndex = ({ children }) => (
       </RovingTabIndex>
     )}
   </EditorDispatch>
-);
+)
 
 class EditorMenuButton extends React.PureComponent<EditorMenuButtonProps> {
   render() {
@@ -39,9 +39,9 @@ class EditorMenuButton extends React.PureComponent<EditorMenuButtonProps> {
       active = false,
       children,
       ...props
-    } = this.props;
-    const buttonAutoFocus = back ? true : autoFocus;
-    const buttonChildren = back ? '…' : children;
+    } = this.props
+    const buttonAutoFocus = back ? true : autoFocus
+    const buttonChildren = back ? '…' : children
     return (
       <DispatchWithRovingTabIndex>
         {(dispatch, tabIndex, onFocus, onKeyDown) => (
@@ -52,9 +52,9 @@ class EditorMenuButton extends React.PureComponent<EditorMenuButtonProps> {
             autoFocus={buttonAutoFocus}
             tabIndex={tabIndex}
             onPress={() => {
-              if (path) dispatch({ type: 'SET_ACTIVE_PATH', path });
-              if (section) dispatch({ type: 'SET_ACTIVE_SECTION', section });
-              if (onPress) onPress();
+              if (path) dispatch({ type: 'SET_ACTIVE_PATH', path })
+              if (section) dispatch({ type: 'SET_ACTIVE_SECTION', section })
+              if (onPress) onPress()
             }}
             onFocus={onFocus}
             onKeyDown={onKeyDown}
@@ -65,8 +65,8 @@ class EditorMenuButton extends React.PureComponent<EditorMenuButtonProps> {
           </Button>
         )}
       </DispatchWithRovingTabIndex>
-    );
+    )
   }
 }
 
-export default EditorMenuButton;
+export default EditorMenuButton

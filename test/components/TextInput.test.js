@@ -1,7 +1,7 @@
 // @flow
-import * as React from 'react';
-import TextInput from '../../components/TextInput';
-import { createExpectRender } from './utils';
+import * as React from 'react'
+import TextInput from '../../components/TextInput'
+import { createExpectRender } from './utils'
 
 const theme = {
   typography: {
@@ -36,26 +36,26 @@ const theme = {
     horizontalSpaceBetween: 0.5,
     verticalSpaceBetween: 1,
   },
-};
+}
 
-const expectRender = createExpectRender(theme);
+const expectRender = createExpectRender(theme)
 
 test('render', () => {
-  expectRender(() => <TextInput maxLength={1} />);
-});
+  expectRender(() => <TextInput maxLength={1} />)
+})
 
 test('disabled', () => {
-  expectRender(() => <TextInput maxLength={1} disabled />);
-});
+  expectRender(() => <TextInput maxLength={1} disabled />)
+})
 
 test('color', () => {
-  expectRender(() => <TextInput maxLength={1} color="primary" />);
-});
+  expectRender(() => <TextInput maxLength={1} color="primary" />)
+})
 
 test('label', () => {
-  expectRender(() => <TextInput maxLength={1} label="label" />);
-});
+  expectRender(() => <TextInput maxLength={1} label="label" />)
+})
 
 test('error', () => {
-  expectRender(() => <TextInput maxLength={1} error="error" />);
-});
+  expectRender(() => <TextInput maxLength={1} error="error" />)
+})

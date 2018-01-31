@@ -1,5 +1,5 @@
 // @flow
-import type { Element } from 'react';
+import type { Element } from 'react'
 
 export type ColorName =
   | 'primary'
@@ -8,7 +8,7 @@ export type ColorName =
   | 'danger'
   | 'black'
   | 'white'
-  | 'gray';
+  | 'gray'
 
 export type ColorProps = {
   primary?: boolean,
@@ -18,7 +18,7 @@ export type ColorProps = {
   black?: boolean,
   white?: boolean,
   gray?: boolean,
-};
+}
 
 type Colors = {
   primary: string,
@@ -28,7 +28,7 @@ type Colors = {
   black: string,
   white: string,
   gray: string,
-};
+}
 
 export type Bold =
   | 'normal'
@@ -41,7 +41,7 @@ export type Bold =
   | 600
   | 700
   | 800
-  | 900;
+  | 900
 
 export type Theme = {
   typography: {|
@@ -94,4 +94,4 @@ export type Theme = {
     checkedIcon: Element<'svg'>,
     uncheckedIcon: Element<'svg'>,
   |},
-};
+}

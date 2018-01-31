@@ -1,5 +1,5 @@
 // @flow
-const { URL } = require('url');
+const { URL } = require('url')
 
 // https://github.com/FormidableLabs/babel-plugin-transform-define
 // This file is cached in node-modules. To refresh cache, run:
@@ -8,10 +8,10 @@ const { URL } = require('url');
 // Remember, never put secrets here. This is for development.
 // For secrets, use environment variables exclusively.
 
-const production = process.env.NODE_ENV === 'production';
+const production = process.env.NODE_ENV === 'production'
 // https://sentry.io/este/estenowsh/settings/keys
 // It's secret, so it must be defined as environment variable.
-const SENTRY_SERVER_DNS = process.env.SENTRY_SERVER_DNS || '';
+const SENTRY_SERVER_DNS = process.env.SENTRY_SERVER_DNS || ''
 
 module.exports = {
   APP_VERSION:
@@ -27,4 +27,4 @@ module.exports = {
   SENTRY_CLIENT_DNS:
     'https://a4e0be7d7bbf415b99ce482d20bc425b@sentry.io/200324',
   SENTRY_SERVER_DNS,
-};
+}

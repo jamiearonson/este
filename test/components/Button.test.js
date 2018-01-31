@@ -1,7 +1,7 @@
 // @flow
-import * as React from 'react';
-import Button from '../../components/Button';
-import { createExpectRender } from './utils';
+import * as React from 'react'
+import Button from '../../components/Button'
+import { createExpectRender } from './utils'
 
 const theme = {
   typography: {
@@ -36,24 +36,24 @@ const theme = {
     paddingVertical: 0.2,
     disabledOpacity: 0.5,
   },
-};
+}
 
-const expectRender = createExpectRender(theme);
+const expectRender = createExpectRender(theme)
 
-const onPress = () => {};
+const onPress = () => {}
 
 test('render', () => {
-  expectRender(() => <Button onPress={onPress} />);
-});
+  expectRender(() => <Button onPress={onPress} />)
+})
 
 test('primary', () => {
-  expectRender(() => <Button primary onPress={onPress} />);
-});
+  expectRender(() => <Button primary onPress={onPress} />)
+})
 
 test('primary outline', () => {
-  expectRender(() => <Button primary outline onPress={onPress} />);
-});
+  expectRender(() => <Button primary outline onPress={onPress} />)
+})
 
 test('disabled', () => {
-  expectRender(() => <Button disabled onPress={onPress} />);
-});
+  expectRender(() => <Button disabled onPress={onPress} />)
+})

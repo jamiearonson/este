@@ -1,29 +1,29 @@
 // @flow
-import * as React from 'react';
-import NProgress from 'nprogress';
-import Router from 'next/router';
+import * as React from 'react'
+import NProgress from 'nprogress'
+import Router from 'next/router'
 
 // Don't show progress for fast transitions.
-const startDelay = 1000;
-let timeoutID = null;
+const startDelay = 1000
+let timeoutID = null
 
 Router.onRouteChangeStart = () => {
-  timeoutID = setTimeout(() => NProgress.start(), startDelay);
-};
+  timeoutID = setTimeout(() => NProgress.start(), startDelay)
+}
 
 Router.onRouteChangeComplete = () => {
-  if (timeoutID) clearTimeout(timeoutID);
-  NProgress.done();
-};
+  if (timeoutID) clearTimeout(timeoutID)
+  NProgress.done()
+}
 
 Router.onRouteChangeError = () => {
-  if (timeoutID) clearTimeout(timeoutID);
-  NProgress.done();
-};
+  if (timeoutID) clearTimeout(timeoutID)
+  NProgress.done()
+}
 
 type Props = {
   color: string,
-};
+}
 
 const LoadingBar = ({ color }: Props) => (
   <style jsx global>{`
@@ -50,6 +50,6 @@ const LoadingBar = ({ color }: Props) => (
       transform: rotate(3deg) translate(0px, -4px);
     }
   `}</style>
-);
+)
 
-export default LoadingBar;
+export default LoadingBar

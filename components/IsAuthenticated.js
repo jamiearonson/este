@@ -1,18 +1,18 @@
 // @flow
-import createReactContext, { type Context } from 'create-react-context';
+import createReactContext, { type Context } from 'create-react-context'
 
 type Value = {|
   isAuthenticated: boolean,
   userId: ?string,
-|};
+|}
 
 const value = {
   isAuthenticated: false,
   userId: null,
-};
+}
 
-const IsAuthenticatedContext: Context<Value> = createReactContext(value);
+const IsAuthenticatedContext: Context<Value> = createReactContext(value)
 
-export const IsAuthenticatedProvider = IsAuthenticatedContext.Provider;
+export const IsAuthenticatedProvider = IsAuthenticatedContext.Provider
 
-export default IsAuthenticatedContext.Consumer;
+export default IsAuthenticatedContext.Consumer

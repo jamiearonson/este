@@ -1,18 +1,18 @@
 // @flow
-import * as React from 'react';
-import EditorMenuSection from './EditorMenuSection';
-import EditorMenuButton from './EditorMenuButton';
-import type { Path, EditorDispatch } from './Editor';
+import * as React from 'react'
+import EditorMenuSection from './EditorMenuSection'
+import EditorMenuButton from './EditorMenuButton'
+import type { Path, EditorDispatch } from './Editor'
 
 type Props = {|
   activePath: Path,
   dispatch: EditorDispatch,
-|};
+|}
 
 class EditorMenuSectionElement extends React.PureComponent<Props> {
   handleDeletePress = () => {
-    this.props.dispatch({ type: 'DELETE_PATH', path: this.props.activePath });
-  };
+    this.props.dispatch({ type: 'DELETE_PATH', path: this.props.activePath })
+  }
 
   render() {
     return (
@@ -26,8 +26,8 @@ class EditorMenuSectionElement extends React.PureComponent<Props> {
         <EditorMenuButton section="add">add</EditorMenuButton>
         <EditorMenuButton>style</EditorMenuButton>
       </EditorMenuSection>
-    );
+    )
   }
 }
 
-export default EditorMenuSectionElement;
+export default EditorMenuSectionElement

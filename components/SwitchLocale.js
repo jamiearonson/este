@@ -1,24 +1,24 @@
 // @flow
-import * as React from 'react';
-import Text from './Text';
-import Locale from './Locale';
+import * as React from 'react'
+import Text from './Text'
+import Locale from './Locale'
 
 class SwitchLocale extends React.PureComponent<{}> {
   static getLocaleHref = (pathname: string, locale: string) => {
-    if (DEFAULT_LOCALE === locale) return pathname;
-    return `${pathname}?locale=${locale}`;
-  };
+    if (DEFAULT_LOCALE === locale) return pathname
+    return `${pathname}?locale=${locale}`
+  }
 
   static localeToLanguageName = (locale: string) => {
     switch (locale) {
       case 'cs':
-        return 'čeština';
+        return 'čeština'
       case 'en':
-        return 'english';
+        return 'english'
       default:
-        return locale;
+        return locale
     }
-  };
+  }
 
   render() {
     return (
@@ -45,8 +45,8 @@ class SwitchLocale extends React.PureComponent<{}> {
           </Text>
         )}
       </Locale>
-    );
+    )
   }
 }
 
-export default SwitchLocale;
+export default SwitchLocale

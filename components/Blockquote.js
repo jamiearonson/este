@@ -1,14 +1,14 @@
 // @flow
-import * as React from 'react';
-import A from './A';
-import P from './P';
-import Text from './Text';
+import * as React from 'react'
+import A from './A'
+import P from './P'
+import Text from './Text'
 
 type BlockquoteProps = {|
   children: React.Node,
   href: string,
   source: string,
-|};
+|}
 
 const Blockquote = ({ children, href, source }: BlockquoteProps) => (
   <P>
@@ -18,6 +18,6 @@ const Blockquote = ({ children, href, source }: BlockquoteProps) => (
       — <A href={href}>{source}</A>
     </Text>
   </P>
-);
+)
 
-export default Blockquote;
+export default Blockquote

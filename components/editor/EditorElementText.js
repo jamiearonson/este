@@ -1,15 +1,15 @@
 // @flow
-import * as React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react'
+import PropTypes from 'prop-types'
 import {
   boxStyleSchema,
   colorSchemaType,
   computeBoxStyle,
   type EditorElementBoxProps,
-} from './EditorElementBox';
-import colorLib from 'color';
-import { validateSchema } from './jsonSchema';
-import { lineHeightSchema } from './EditorMenuSectionTypography';
+} from './EditorElementBox'
+import colorLib from 'color'
+import { validateSchema } from './jsonSchema'
+import { lineHeightSchema } from './EditorMenuSectionTypography'
 
 // Simplified components/Text.js
 // - less props and logic
@@ -17,7 +17,7 @@ import { lineHeightSchema } from './EditorMenuSectionTypography';
 // - use style prop for styling
 // - JSON schema instead of Flow
 
-type EditorElementTextProps = EditorElementBoxProps;
+type EditorElementTextProps = EditorElementBoxProps
 
 // TODO: Improve with JSON Schema draft 7 for full CSS compliance.
 const textStyleSchema = {
@@ -51,9 +51,9 @@ const textStyleSchema = {
     },
     color: colorSchemaType,
   },
-};
+}
 
-validateSchema(textStyleSchema);
+validateSchema(textStyleSchema)
 
 const computeTextStyle = (hasParentText, theme, style) => {
   style = {
@@ -68,59 +68,59 @@ const computeTextStyle = (hasParentText, theme, style) => {
         }),
     ...style,
     ...(hasParentText ? null : computeBoxStyle(theme, style || {})),
-  };
+  }
 
   // Use modular scale for fontSize typeof number.
   if (typeof style.fontSize === 'number') {
     style.fontSize = `${theme.typography.fontSize *
-      theme.typography.fontSizeScale ** style.fontSize}px`;
+      theme.typography.fontSizeScale ** style.fontSize}px`
   }
 
   // Set rhythm lineHeight by fontSize and theme.typography.lineHeight.
   // http://inlehmansterms.net/2014/06/09/groove-to-a-vertical-rhythm
   if (style.fontSize) {
     const absoluteLineHeight =
-      theme.typography.fontSize * theme.typography.lineHeight;
-    const lines = Math.ceil(parseInt(style.fontSize, 10) / absoluteLineHeight);
-    style.lineHeight = lines * absoluteLineHeight;
+      theme.typography.fontSize * theme.typography.lineHeight
+    const lines = Math.ceil(parseInt(style.fontSize, 10) / absoluteLineHeight)
+    style.lineHeight = lines * absoluteLineHeight
   }
 
-  return style;
-};
+  return style
+}
 
 class EditorElementText extends React.PureComponent<EditorElementTextProps> {
   static childContextTypes = {
     hasParentText: PropTypes.bool,
-  };
+  }
 
   static contextTypes = {
     hasParentText: PropTypes.bool,
-  };
+  }
 
   getChildContext() {
     // Let descendant components know that their nearest ancestor is Text.
-    return { hasParentText: true };
+    return { hasParentText: true }
   }
 
-  context: { hasParentText: boolean };
+  context: { hasParentText: boolean }
 
   render() {
-    const { style, theme, children, ...props } = this.props;
-    const { hasParentText } = this.context;
+    const { style, theme, children, ...props } = this.props
+    const { hasParentText } = this.context
     const {
       color,
       fontFamily,
       fontSize,
       lineHeight,
       ...computedStyle
-    } = computeTextStyle(hasParentText, theme, style);
+    } = computeTextStyle(hasParentText, theme, style)
 
     // http://usabilitypost.com/2012/11/05/stop-fixing-font-smoothing
     // tldr; Fix font smoothing only for light text on a dark background.
     // We check only color luminosity for now. It's good enough. An ideal
     // solution would have to propagate backgroundColor from parents through
     // context. That's would allow to compare luminosities.
-    const fixBrowserFontSmoothing = color && colorLib(color).luminosity() > 0.5;
+    const fixBrowserFontSmoothing = color && colorLib(color).luminosity() > 0.5
 
     return (
       <div {...props} style={computedStyle}>
@@ -156,8 +156,8 @@ class EditorElementText extends React.PureComponent<EditorElementTextProps> {
           }
         `}</style>
       </div>
-    );
+    )
   }
 }
 
-export default EditorElementText;
+export default EditorElementText

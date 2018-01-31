@@ -1,10 +1,10 @@
 // @flow
-import * as React from 'react';
-import { FormattedMessage } from 'react-intl';
+import * as React from 'react'
+import { FormattedMessage } from 'react-intl'
 
 type AreYouSureConfirmProps = {|
   children: (() => boolean) => React.Node,
-|};
+|}
 
 const AreYouSureConfirm = ({ children }: AreYouSureConfirmProps) => (
   <FormattedMessage defaultMessage="Are you sure?" id="confirm.areYouSure">
@@ -15,6 +15,6 @@ const AreYouSureConfirm = ({ children }: AreYouSureConfirmProps) => (
       )
     }
   </FormattedMessage>
-);
+)
 
-export default AreYouSureConfirm;
+export default AreYouSureConfirm

@@ -1,8 +1,8 @@
 // @flow
-import * as React from 'react';
-import EditorMenuSection from './EditorMenuSection';
-import EditorMenuA from './EditorMenuA';
-import { ManageYourWebsMessage } from '../../pages';
+import * as React from 'react'
+import EditorMenuSection from './EditorMenuSection'
+import EditorMenuA from './EditorMenuA'
+import { ManageYourWebsMessage } from '../../pages'
 
 class EditorMenuSectionHamburger extends React.PureComponent<{}> {
   render() {
@@ -12,8 +12,8 @@ class EditorMenuSectionHamburger extends React.PureComponent<{}> {
           <ManageYourWebsMessage />
         </EditorMenuA>
       </EditorMenuSection>
-    );
+    )
   }
 }
 
-export default EditorMenuSectionHamburger;
+export default EditorMenuSectionHamburger

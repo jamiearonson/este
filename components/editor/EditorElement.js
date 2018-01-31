@@ -1,39 +1,39 @@
 // @flow
-import * as React from 'react';
-import EditorElementBox from './EditorElementBox';
-import EditorElementText from './EditorElementText';
-import type { Element, Path, Theme } from './Editor';
-import Color from 'color';
-import { activeElementProp } from './Editor';
-import EditorDispatch from './EditorDispatch';
-import arrayEqual from 'array-equal';
+import * as React from 'react'
+import EditorElementBox from './EditorElementBox'
+import EditorElementText from './EditorElementText'
+import type { Element, Path, Theme } from './Editor'
+import Color from 'color'
+import { activeElementProp } from './Editor'
+import EditorDispatch from './EditorDispatch'
+import arrayEqual from 'array-equal'
 
 // React key prop has to be unique string. No cheating. But for arbitrary JSON,
 // we don't have any unique id and JSON.stringify is too slow.
 // Fortunately, we use immutable data, so we can leverage WeakMap.
 export const getElementKey = (() => {
-  const map = new WeakMap();
-  let idx = 0;
+  const map = new WeakMap()
+  let idx = 0
   return (element: Element): string => {
-    const maybeValue = map.get(element);
-    if (typeof maybeValue === 'string') return maybeValue;
-    const value = (idx++).toString();
-    map.set(element, value);
-    return value;
-  };
-})();
+    const maybeValue = map.get(element)
+    if (typeof maybeValue === 'string') return maybeValue
+    const value = (idx++).toString()
+    map.set(element, value)
+    return value
+  }
+})()
 
 const getInheritedBackgroundColor = (elements, themeBackgroundColor) => {
   for (const { props } of elements.reverse()) {
     if (props.style && props.style.backgroundColor)
-      return props.style.backgroundColor;
+      return props.style.backgroundColor
   }
-  return themeBackgroundColor;
-};
+  return themeBackgroundColor
+}
 
 class FlashAnimation extends React.PureComponent<*> {
   render() {
-    const { color, onEnd } = this.props;
+    const { color, onEnd } = this.props
     return (
       <div onAnimationEnd={onEnd}>
         <style jsx>{`
@@ -57,14 +57,14 @@ class FlashAnimation extends React.PureComponent<*> {
           }
         `}</style>
       </div>
-    );
+    )
   }
 }
 
 const editorElements = {
   Box: EditorElementBox,
   Text: EditorElementText,
-};
+}
 
 type EditorElementProps = {|
   element: Element,
@@ -72,33 +72,33 @@ type EditorElementProps = {|
   path: Path,
   parents: Array<Element>,
   activePath: Path,
-|};
+|}
 
 type EditorElementState = {|
   flashAnimationRunning: boolean,
   flashAnimationColor: string,
-|};
+|}
 
 class EditorElement extends React.PureComponent<
   EditorElementProps,
   EditorElementState,
 > {
-  static pathEqual = (path1: Path, path2: Path) => arrayEqual(path1, path2);
+  static pathEqual = (path1: Path, path2: Path) => arrayEqual(path1, path2)
 
   constructor(props: EditorElementProps) {
-    super(props);
+    super(props)
     this.state = {
       flashAnimationRunning: false,
       flashAnimationColor: props.theme.colors.background,
-    };
+    }
   }
 
   componentWillReceiveProps(nextProps: EditorElementProps) {
     const thisPathIsActivePathAndHasBeenUpdated =
       EditorElement.pathEqual(nextProps.activePath, this.props.path) &&
-      nextProps.activePath !== this.props.activePath;
+      nextProps.activePath !== this.props.activePath
     if (thisPathIsActivePathAndHasBeenUpdated) {
-      this.runFlashAnimation();
+      this.runFlashAnimation()
     }
   }
 
@@ -107,14 +107,14 @@ class EditorElement extends React.PureComponent<
     if (this.state.flashAnimationRunning) {
       // We have to remove then add element to restart CSS animation. Yep.
       this.setState({ flashAnimationRunning: false }, () => {
-        this.setState({ flashAnimationRunning: true });
-      });
-      return;
+        this.setState({ flashAnimationRunning: true })
+      })
+      return
     }
     const backgroundColor = getInheritedBackgroundColor(
       [...this.props.parents, this.props.element],
       this.props.theme.colors.background,
-    );
+    )
     this.setState({
       flashAnimationRunning: true,
       // Wow. I didn't know I can use CSS filter effects grayscale and invert.
@@ -122,32 +122,32 @@ class EditorElement extends React.PureComponent<
       flashAnimationColor: Color(backgroundColor)
         .grayscale()
         .negate(),
-    });
+    })
   }
 
   isActive() {
-    return EditorElement.pathEqual(this.props.path, this.props.activePath);
+    return EditorElement.pathEqual(this.props.path, this.props.activePath)
   }
 
   handleClick = (dispatch: *) => (e: Event) => {
-    e.preventDefault();
-    e.stopPropagation();
+    e.preventDefault()
+    e.stopPropagation()
     // Make a clone to enforce flash animation restart.
-    const path = this.props.path.slice(0);
-    dispatch({ type: 'SET_ACTIVE_PATH', path });
-  };
+    const path = this.props.path.slice(0)
+    dispatch({ type: 'SET_ACTIVE_PATH', path })
+  }
 
   handleFlashAnimationEnd = () => {
-    this.setState({ flashAnimationRunning: false });
-  };
+    this.setState({ flashAnimationRunning: false })
+  }
 
   render() {
-    const { theme, element, path, parents, activePath } = this.props;
-    const Component = editorElements[element.type];
-    if (!Component) return null;
+    const { theme, element, path, parents, activePath } = this.props
+    const Component = editorElements[element.type]
+    if (!Component) return null
 
     const componentChildren = element.props.children.map((child, i) => {
-      if (typeof child === 'string') return child;
+      if (typeof child === 'string') return child
       return (
         <EditorElement
           key={getElementKey(child)}
@@ -157,8 +157,8 @@ class EditorElement extends React.PureComponent<
           parents={parents.concat(element)}
           activePath={activePath}
         />
-      );
-    });
+      )
+    })
 
     return (
       <EditorDispatch>
@@ -179,8 +179,8 @@ class EditorElement extends React.PureComponent<
           </Component>
         )}
       </EditorDispatch>
-    );
+    )
   }
 }
 
-export default EditorElement;
+export default EditorElement

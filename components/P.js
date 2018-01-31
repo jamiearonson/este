@@ -1,7 +1,7 @@
 // @flow
-import * as React from 'react';
-import Text, { type TextProps } from './Text';
-import Theme from './Theme';
+import * as React from 'react'
+import Text, { type TextProps } from './Text'
+import Theme from './Theme'
 
 class P extends React.PureComponent<TextProps> {
   render() {
@@ -12,14 +12,14 @@ class P extends React.PureComponent<TextProps> {
             marginBottom = theme.p.marginBottom,
             maxWidth = theme.p.maxWidth,
             ...props
-          } = this.props;
+          } = this.props
           return (
             <Text marginBottom={marginBottom} maxWidth={maxWidth} {...props} />
-          );
+          )
         }}
       </Theme>
-    );
+    )
   }
 }
 
-export default P;
+export default P

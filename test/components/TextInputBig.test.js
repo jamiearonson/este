@@ -1,7 +1,7 @@
 // @flow
-import * as React from 'react';
-import TextInputBig from '../../components/TextInputBig';
-import { createExpectRender } from './utils';
+import * as React from 'react'
+import TextInputBig from '../../components/TextInputBig'
+import { createExpectRender } from './utils'
 
 const theme = {
   typography: {
@@ -36,26 +36,26 @@ const theme = {
     horizontalSpaceBetween: 0.5,
     verticalSpaceBetween: 1,
   },
-};
+}
 
-const expectRender = createExpectRender(theme);
+const expectRender = createExpectRender(theme)
 
 test('render', () => {
-  expectRender(() => <TextInputBig maxLength={1} />);
-});
+  expectRender(() => <TextInputBig maxLength={1} />)
+})
 
 test('disabled', () => {
-  expectRender(() => <TextInputBig maxLength={1} disabled />);
-});
+  expectRender(() => <TextInputBig maxLength={1} disabled />)
+})
 
 test('color', () => {
-  expectRender(() => <TextInputBig maxLength={1} color="primary" />);
-});
+  expectRender(() => <TextInputBig maxLength={1} color="primary" />)
+})
 
 test('label', () => {
-  expectRender(() => <TextInputBig maxLength={1} label="label" />);
-});
+  expectRender(() => <TextInputBig maxLength={1} label="label" />)
+})
 
 test('error', () => {
-  expectRender(() => <TextInputBig maxLength={1} error="error" />);
-});
+  expectRender(() => <TextInputBig maxLength={1} error="error" />)
+})

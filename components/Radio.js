@@ -1,10 +1,10 @@
 // @flow
-import * as React from 'react';
-import Button, { type ButtonProps } from './Button';
-import Set from './Set';
-import SvgIcon from './SvgIcon';
-import Text from './Text';
-import Theme from './Theme';
+import * as React from 'react'
+import Button, { type ButtonProps } from './Button'
+import Set from './Set'
+import SvgIcon from './SvgIcon'
+import Text from './Text'
+import Theme from './Theme'
 
 export type RadioProps = {
   label?: string,
@@ -12,7 +12,7 @@ export type RadioProps = {
   onChange?: (value: string) => any,
   select: string,
   value: ?string,
-} & ButtonProps;
+} & ButtonProps
 
 class Radio extends React.PureComponent<RadioProps> {
   render() {
@@ -31,14 +31,14 @@ class Radio extends React.PureComponent<RadioProps> {
             paddingVertical = 0,
             size,
             ...props
-          } = this.props;
+          } = this.props
           return (
             <Button
               aria-checked={value === select}
               onPress={() => {
-                if (typeof props.onPress === 'function') props.onPress();
-                if (!onChange) return;
-                onChange(select);
+                if (typeof props.onPress === 'function') props.onPress()
+                if (!onChange) return
+                onChange(select)
               }}
               role="radio"
               size={size}
@@ -68,11 +68,11 @@ class Radio extends React.PureComponent<RadioProps> {
                 />
               </Set>
             </Button>
-          );
+          )
         }}
       </Theme>
-    );
+    )
   }
 }
 
-export default Radio;
+export default Radio

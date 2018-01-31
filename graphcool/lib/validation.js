@@ -1,5 +1,5 @@
 // @flow
-import isEmail from 'validator/lib/isEmail';
+import isEmail from 'validator/lib/isEmail'
 
 // This file must be placed in the graphcool directory because graphcool deploy
 // does not build source files.
@@ -32,18 +32,18 @@ type Validator<T> = (value: T) => ?ValidationError;
 */
 
 export const shortText /*: Validator<string> */ = value => {
-  if (value.length === 0) return { type: 'required' };
-  if (value.length < 3) return { type: 'minLength', minLength: 3 };
-  if (value.length > 140) return { type: 'maxLength', maxLength: 140 };
-};
+  if (value.length === 0) return { type: 'required' }
+  if (value.length < 3) return { type: 'minLength', minLength: 3 }
+  if (value.length > 140) return { type: 'maxLength', maxLength: 140 }
+}
 
 export const email /*: Validator<string> */ = value => {
-  if (value.length === 0) return { type: 'required' };
-  if (!isEmail(value)) return { type: 'email' };
-};
+  if (value.length === 0) return { type: 'required' }
+  if (!isEmail(value)) return { type: 'email' }
+}
 
 export const password /*: Validator<string> */ = value => {
-  if (value.length === 0) return { type: 'required' };
-  if (value.length < 6) return { type: 'minLength', minLength: 6 };
-  if (value.length > 1024) return { type: 'maxLength', maxLength: 1024 };
-};
+  if (value.length === 0) return { type: 'required' }
+  if (value.length < 6) return { type: 'minLength', minLength: 6 }
+  if (value.length > 1024) return { type: 'maxLength', maxLength: 1024 }
+}

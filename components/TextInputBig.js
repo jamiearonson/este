@@ -1,8 +1,8 @@
 // @flow
-import * as React from 'react';
-import Box from './Box';
-import Text from './Text';
-import TextInput, { type TextInputProps } from './TextInput';
+import * as React from 'react'
+import Box from './Box'
+import Text from './Text'
+import TextInput, { type TextInputProps } from './TextInput'
 
 class TextInputBig extends React.PureComponent<TextInputProps> {
   render() {
@@ -14,7 +14,7 @@ class TextInputBig extends React.PureComponent<TextInputProps> {
       paddingVertical = 0.5,
       size = 1,
       ...props
-    } = this.props;
+    } = this.props
     return (
       <Box>
         <TextInput
@@ -35,8 +35,8 @@ class TextInputBig extends React.PureComponent<TextInputProps> {
           )}
         </Box>
       </Box>
-    );
+    )
   }
 }
 
-export default TextInputBig;
+export default TextInputBig

@@ -1,13 +1,13 @@
 // @flow
-import createReactContext, { type Context } from 'create-react-context';
-import type { EditorDispatch } from './Editor';
+import createReactContext, { type Context } from 'create-react-context'
+import type { EditorDispatch } from './Editor'
 
-type Value = EditorDispatch;
+type Value = EditorDispatch
 
-const value = () => {};
+const value = () => {}
 
-const EditorDispatchContext: Context<Value> = createReactContext(value);
+const EditorDispatchContext: Context<Value> = createReactContext(value)
 
-export const EditorDispatchProvider = EditorDispatchContext.Provider;
+export const EditorDispatchProvider = EditorDispatchContext.Provider
 
-export default EditorDispatchContext.Consumer;
+export default EditorDispatchContext.Consumer

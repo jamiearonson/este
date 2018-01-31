@@ -1,7 +1,7 @@
 // @flow
-import * as React from 'react';
-import Text, { type TextProps } from './Text';
-import Theme from './Theme';
+import * as React from 'react'
+import Text, { type TextProps } from './Text'
+import Theme from './Theme'
 
 class Heading extends React.PureComponent<TextProps> {
   render() {
@@ -13,7 +13,7 @@ class Heading extends React.PureComponent<TextProps> {
             fontFamily = theme.heading.fontFamily,
             marginBottom = theme.heading.marginBottom,
             ...props
-          } = this.props;
+          } = this.props
 
           return (
             <Text
@@ -22,11 +22,11 @@ class Heading extends React.PureComponent<TextProps> {
               marginBottom={marginBottom}
               {...props}
             />
-          );
+          )
         }}
       </Theme>
-    );
+    )
   }
 }
 
-export default Heading;
+export default Heading

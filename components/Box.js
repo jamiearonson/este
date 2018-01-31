@@ -1,8 +1,8 @@
 // @flow
-import type { ColorName } from '../themes/types';
-import * as React from 'react';
-import AutoFocus from './AutoFocus';
-import Theme from './Theme';
+import type { ColorName } from '../themes/types'
+import * as React from 'react'
+import AutoFocus from './AutoFocus'
+import Theme from './Theme'
 
 /*
   Box is the basic UI primitive for all universal themed UI components.
@@ -27,7 +27,7 @@ import Theme from './Theme';
 */
 
 // If a number, then it's multiplied by theme typography rhythm.
-type MaybeRhythm = number | string;
+type MaybeRhythm = number | string
 
 export type BoxProps = {
   children?: React.Node,
@@ -119,7 +119,7 @@ export type BoxProps = {
   borderLeftColor?: ColorName,
   borderRightColor?: ColorName,
   borderTopColor?: ColorName,
-};
+}
 
 // Emulate React Native to ensure the same styles for all platforms.
 // https://facebook.github.io/yoga
@@ -129,22 +129,22 @@ const reactNativeEmulationForBrowsers = {
   display: 'flex',
   flexDirection: 'column',
   position: 'relative',
-};
+}
 
 const reduce = (props: BoxProps, getValue) =>
   Object.keys(props).reduce((style, prop) => {
-    const value = props[prop];
-    if (value === undefined) return style;
+    const value = props[prop]
+    if (value === undefined) return style
     return {
       ...style,
       [prop]: getValue(value),
-    };
-  }, {});
+    }
+  }, {})
 
 const maybeRhythm = (rhythm, props) =>
-  reduce(props, value => (typeof value === 'number' ? rhythm(value) : value));
+  reduce(props, value => (typeof value === 'number' ? rhythm(value) : value))
 
-const justValue = props => reduce(props, value => value);
+const justValue = props => reduce(props, value => value)
 
 // https://facebook.github.io/react-native/releases/0.44/docs/layout-props.html#flex
 // https://github.com/necolas/react-native-web expandStyle-test.js
@@ -154,31 +154,30 @@ const restrictedFlex = (
   flexShrink = 1,
   isReactNative,
 ) => {
-  if (flex === undefined) return null;
+  if (flex === undefined) return null
   // TODO: Not implemented yet
-  if (flex < 1) return null;
+  if (flex < 1) return null
   return isReactNative === true
     ? { flex }
-    : { flexBasis, flexGrow: flex, flexShrink };
-};
+    : { flexBasis, flexGrow: flex, flexShrink }
+}
 
 // ColorName any type, because Flow can't infere props for some reason.
-const themeColor = (colors: any, props) =>
-  reduce(props, value => colors[value]);
+const themeColor = (colors: any, props) => reduce(props, value => colors[value])
 
 // Try to ensure vertical and horizontal rhythm.
 const tryToEnsureRhythmViaPaddingCompensation = style =>
   ['Bottom', 'Left', 'Right', 'Top'].reduce((style, prop) => {
-    const borderXWidth = style[`border${prop}Width`];
-    const paddingProp = `padding${prop}`;
-    const paddingX = style[paddingProp];
+    const borderXWidth = style[`border${prop}Width`]
+    const paddingProp = `padding${prop}`
+    const paddingX = style[paddingProp]
     const canCompute =
-      typeof borderXWidth === 'number' && typeof paddingX === 'number';
-    if (!canCompute) return style;
-    const compensatedPaddingX = paddingX - borderXWidth;
-    if (compensatedPaddingX < 0) return style;
-    return { ...style, [paddingProp]: compensatedPaddingX };
-  }, style);
+      typeof borderXWidth === 'number' && typeof paddingX === 'number'
+    if (!canCompute) return style
+    const compensatedPaddingX = paddingX - borderXWidth
+    if (compensatedPaddingX < 0) return style
+    return { ...style, [paddingProp]: compensatedPaddingX }
+  }, style)
 
 class Box extends React.PureComponent<BoxProps> {
   render() {
@@ -254,7 +253,7 @@ class Box extends React.PureComponent<BoxProps> {
             borderTopColor = borderColor,
 
             ...props
-          } = this.props;
+          } = this.props
 
           const boxStyle = {
             ...(isReactNative === true
@@ -315,11 +314,11 @@ class Box extends React.PureComponent<BoxProps> {
               borderTopColor,
             }),
             ...style,
-          };
+          }
 
           const boxStyleWithRhythm = tryToEnsureRhythmViaPaddingCompensation(
             boxStyle,
-          );
+          )
 
           // We can't use styled-jsx yet since it works only with JSX via Babel plugin.
           // Style prop just works and it's future compatible with React Native.
@@ -327,17 +326,17 @@ class Box extends React.PureComponent<BoxProps> {
             ...props,
             // http://shouldiprefix.com? No.
             style: boxStyleWithRhythm,
-          });
+          })
 
           // Enforce truthy check.
           // eslint-disable-next-line no-extra-boolean-cast
           if (Boolean(autoFocus))
-            return <AutoFocus autoFocus={autoFocus}>{element}</AutoFocus>;
-          return element;
+            return <AutoFocus autoFocus={autoFocus}>{element}</AutoFocus>
+          return element
         }}
       </Theme>
-    );
+    )
   }
 }
 
-export default Box;
+export default Box

@@ -1,7 +1,7 @@
 // @flow
-import * as React from 'react';
-import EditorMenuSection from './EditorMenuSection';
-import EditorMenuButton from './EditorMenuButton';
+import * as React from 'react'
+import EditorMenuSection from './EditorMenuSection'
+import EditorMenuButton from './EditorMenuButton'
 
 class EditorMenuSectionPage extends React.PureComponent<{}> {
   render() {
@@ -11,8 +11,8 @@ class EditorMenuSectionPage extends React.PureComponent<{}> {
         <EditorMenuButton>publish</EditorMenuButton>
         <EditorMenuButton section="add">add</EditorMenuButton>
       </EditorMenuSection>
-    );
+    )
   }
 }
 
-export default EditorMenuSectionPage;
+export default EditorMenuSectionPage

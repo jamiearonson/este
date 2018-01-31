@@ -1,12 +1,12 @@
 // @flow
-import { graphql, commitMutation } from 'react-relay';
-import type { Commit } from './types';
+import { graphql, commitMutation } from 'react-relay'
+import type { Commit } from './types'
 import type {
   CreateWebMutationVariables,
   CreateWebMutationResponse,
-} from './__generated__/CreateWebMutation.graphql';
-import { ConnectionHandler } from 'relay-runtime';
-import { queryFilters } from '../pages/index';
+} from './__generated__/CreateWebMutation.graphql'
+import { ConnectionHandler } from 'relay-runtime'
+import { queryFilters } from '../pages/index'
 
 const mutation = graphql`
   mutation CreateWebMutation($input: CreateWebInput!) {
@@ -19,10 +19,10 @@ const mutation = graphql`
       }
     }
   }
-`;
+`
 
 const sharedUpdater = (store, edge, userId) => {
-  const viewerProxy = store.get('viewer-fixed');
+  const viewerProxy = store.get('viewer-fixed')
   const connection = ConnectionHandler.getConnection(
     viewerProxy,
     'WebList_allWebs',
@@ -30,18 +30,18 @@ const sharedUpdater = (store, edge, userId) => {
       ...queryFilters(userId),
       orderBy: 'createdAt_ASC',
     },
-  );
+  )
   // https://github.com/facebook/relay/issues/1808#issuecomment-304519883
   if (!connection) {
     // eslint-disable-next-line no-console
-    console.warn('Undefined connection. Check getConnection arguments.');
+    console.warn('Undefined connection. Check getConnection arguments.')
   }
-  ConnectionHandler.insertEdgeAfter(connection, edge);
-};
+  ConnectionHandler.insertEdgeAfter(connection, edge)
+}
 
 type CommitWithArgs = (
   userId: string,
-) => Commit<CreateWebMutationVariables, CreateWebMutationResponse>;
+) => Commit<CreateWebMutationVariables, CreateWebMutationResponse>
 
 const commit: CommitWithArgs = userId => (
   environment,
@@ -55,10 +55,10 @@ const commit: CommitWithArgs = userId => (
     onCompleted,
     onError,
     updater: store => {
-      const payload = store.getRootField('createWeb');
-      const edge = payload.getLinkedRecord('edge');
-      sharedUpdater(store, edge, userId);
+      const payload = store.getRootField('createWeb')
+      const edge = payload.getLinkedRecord('edge')
+      sharedUpdater(store, edge, userId)
     },
-  });
+  })
 
-export default { commit };
+export default { commit }

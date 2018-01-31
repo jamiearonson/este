@@ -149,7 +149,7 @@ export type OpenColor = {
   yellow7: string,
   yellow8: string,
   yellow9: string,
-};
+}
 
 // Copy pasted from open-color@1.4.0
 const openColorOriginal = {
@@ -311,14 +311,14 @@ const openColorOriginal = {
     '#e8590c',
     '#d9480f',
   ],
-};
+}
 
 // I don't know why, but "| any" is required.
 const openColor: OpenColor | any = Object.keys(openColorOriginal).reduce(
   (flatten, colorName) => {
-    const values = openColorOriginal[colorName];
+    const values = openColorOriginal[colorName]
     if (typeof values === 'string') {
-      return { ...flatten, [colorName]: values };
+      return { ...flatten, [colorName]: values }
     }
     const colors = values.reduce(
       (values, colorValue, i) => ({
@@ -326,10 +326,10 @@ const openColor: OpenColor | any = Object.keys(openColorOriginal).reduce(
         [colorName + i]: colorValue,
       }),
       {},
-    );
-    return { ...flatten, ...colors };
+    )
+    return { ...flatten, ...colors }
   },
   {},
-);
+)
 
-export default openColor;
+export default openColor

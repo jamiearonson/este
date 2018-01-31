@@ -1,19 +1,19 @@
 // @flow
-import * as React from 'react';
-import { titles } from '../lib/sitemap';
-import Page from '../components/Page';
-import Heading from '../components/Heading';
-import app, { type QueryVariables } from '../components/app';
-import A from '../components/A';
-import { FormattedMessage } from 'react-intl';
-import Blockquote from '../components/Blockquote';
-import P from '../components/P';
-import Box from '../components/Box';
-import CreateWeb from '../components/CreateWeb';
-import WebList from '../components/WebList';
-import { graphql } from 'react-relay';
-import { type pagesQueryResponse } from './__generated__/pagesQuery.graphql';
-import IsAuthenticated from '../components/IsAuthenticated';
+import * as React from 'react'
+import { titles } from '../lib/sitemap'
+import Page from '../components/Page'
+import Heading from '../components/Heading'
+import app, { type QueryVariables } from '../components/app'
+import A from '../components/A'
+import { FormattedMessage } from 'react-intl'
+import Blockquote from '../components/Blockquote'
+import P from '../components/P'
+import Box from '../components/Box'
+import CreateWeb from '../components/CreateWeb'
+import WebList from '../components/WebList'
+import { graphql } from 'react-relay'
+import { type pagesQueryResponse } from './__generated__/pagesQuery.graphql'
+import IsAuthenticated from '../components/IsAuthenticated'
 
 const NotAuthenticated = () => (
   <Box>
@@ -30,7 +30,7 @@ const NotAuthenticated = () => (
       really know about what they imagine they can design.
     </Blockquote>
   </Box>
-);
+)
 
 // This is a pattern. Export message to be reusable elsewhere.
 export const ManageYourWebsMessage = () => (
@@ -38,7 +38,7 @@ export const ManageYourWebsMessage = () => (
     defaultMessage="Manage your webs"
     id="index.manageYourWebs"
   />
-);
+)
 
 const Authenticated = ({ viewer, userId }) => (
   <Box>
@@ -48,10 +48,10 @@ const Authenticated = ({ viewer, userId }) => (
     <WebList viewer={viewer} userId={userId} />
     <CreateWeb userId={userId} />
   </Box>
-);
+)
 
 const Index = ({ data, intl }) => {
-  const { viewer }: pagesQueryResponse = data;
+  const { viewer }: pagesQueryResponse = data
   return (
     <Page title={intl.formatMessage(titles.index)}>
       <Heading size={3}>Este</Heading>
@@ -65,12 +65,12 @@ const Index = ({ data, intl }) => {
         }
       </IsAuthenticated>
     </Page>
-  );
-};
+  )
+}
 
 export const queryFilters = (userId: ?string) => ({
   filter: { owner: { id: userId } },
-});
+})
 
 export default app(Index, {
   query: graphql`
@@ -84,4 +84,4 @@ export default app(Index, {
     ...queryFilters(userId),
     isAuthenticated,
   }),
-});
+})

@@ -1,7 +1,7 @@
 // @flow
-import * as React from 'react';
-import SvgIcon from '../../components/SvgIcon';
-import { createExpectRender } from './utils';
+import * as React from 'react'
+import SvgIcon from '../../components/SvgIcon'
+import { createExpectRender } from './utils'
 
 const theme = {
   typography: {
@@ -28,14 +28,14 @@ const theme = {
       fixFontSmoothing: true,
     },
   },
-};
+}
 
-const expectRender = createExpectRender(theme);
+const expectRender = createExpectRender(theme)
 
 test('render', () => {
-  expectRender(() => <SvgIcon svg={<svg />} />);
-});
+  expectRender(() => <SvgIcon svg={<svg />} />)
+})
 
 test('color and size', () => {
-  expectRender(() => <SvgIcon color="primary" size={1} svg={<svg />} />);
-});
+  expectRender(() => <SvgIcon color="primary" size={1} svg={<svg />} />)
+})

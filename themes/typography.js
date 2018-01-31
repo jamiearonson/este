@@ -23,7 +23,7 @@ export const scale = {
   step14: 8 / 3,
   step15: 3,
   step16: 4,
-};
+}
 
 const typography = ({
   fontSize,
@@ -35,12 +35,12 @@ const typography = ({
   lineHeight: number,
 |}) => {
   const scaleRatio =
-    typeof fontSizeScale === 'string' ? scale[fontSizeScale] : fontSizeScale;
+    typeof fontSizeScale === 'string' ? scale[fontSizeScale] : fontSizeScale
   return {
     fontSize: (level: number) => fontSize * scaleRatio ** level,
     lineHeight,
     rhythm: (ratio: number) => lineHeight * ratio,
-  };
-};
+  }
+}
 
-export default typography;
+export default typography

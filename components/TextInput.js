@@ -1,10 +1,10 @@
 // @flow
-import * as React from 'react';
-import Box from './Box';
-import Set from './Set';
-import Text, { type TextProps } from './Text';
-import colorLib from 'color';
-import Theme from './Theme';
+import * as React from 'react'
+import Box from './Box'
+import Set from './Set'
+import Text, { type TextProps } from './Text'
+import colorLib from 'color'
+import Theme from './Theme'
 
 // Universal text input component. By default, it looks like editable text.
 // For underline or the other effects, make a new component. Check TextInputBig.
@@ -17,12 +17,12 @@ export type TextInputProps = {
   maxLength?: number,
   onChange?: (text: string) => void,
   onSubmitEditing?: () => void,
-} & TextProps;
+} & TextProps
 
 const reactNativeEmulation = {
   backgroundColor: 'transparent',
   outline: 'none',
-};
+}
 
 class TextInput extends React.PureComponent<TextInputProps> {
   render() {
@@ -38,9 +38,9 @@ class TextInput extends React.PureComponent<TextInputProps> {
             size = 0,
             style,
             ...props
-          } = this.props;
-          const placeholderColor = colorLib(theme.colors[color]).fade(0.5);
-          const placeholderClassName = `placeholderColor${placeholderColor.rgbNumber()}`;
+          } = this.props
+          const placeholderColor = colorLib(theme.colors[color]).fade(0.5)
+          const placeholderClassName = `placeholderColor${placeholderColor.rgbNumber()}`
 
           return (
             <Box>
@@ -75,16 +75,16 @@ class TextInput extends React.PureComponent<TextInputProps> {
                 {...(onChange
                   ? {
                       onChange: (e: { currentTarget: HTMLInputElement }) => {
-                        if (!onChange) return;
-                        onChange(e.currentTarget.value);
+                        if (!onChange) return
+                        onChange(e.currentTarget.value)
                       },
                     }
                   : null)}
                 {...(onSubmitEditing
                   ? {
                       onKeyDown: (e: SyntheticKeyboardEvent<>) => {
-                        if (e.key !== 'Enter' || !onSubmitEditing) return;
-                        onSubmitEditing();
+                        if (e.key !== 'Enter' || !onSubmitEditing) return
+                        onSubmitEditing()
                       },
                     }
                   : null)}
@@ -98,11 +98,11 @@ class TextInput extends React.PureComponent<TextInputProps> {
                 }}
               />
             </Box>
-          );
+          )
         }}
       </Theme>
-    );
+    )
   }
 }
 
-export default TextInput;
+export default TextInput

@@ -1,10 +1,10 @@
 // @flow
-import { graphql, commitMutation } from 'react-relay';
-import type { Commit } from './types';
+import { graphql, commitMutation } from 'react-relay'
+import type { Commit } from './types'
 import type {
   SigninMutationResponse,
   SigninMutationVariables,
-} from './__generated__/SigninMutation.graphql';
+} from './__generated__/SigninMutation.graphql'
 
 const mutation = graphql`
   mutation SigninMutation($email: String!, $password: String!) {
@@ -13,7 +13,7 @@ const mutation = graphql`
       token
     }
   }
-`;
+`
 
 const commit: Commit<SigninMutationVariables, SigninMutationResponse> = (
   environment,
@@ -26,6 +26,6 @@ const commit: Commit<SigninMutationVariables, SigninMutationResponse> = (
     variables,
     onCompleted,
     onError,
-  });
+  })
 
-export default { commit };
+export default { commit }

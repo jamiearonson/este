@@ -97,7 +97,7 @@ const pageIndexFixture = [
       ],
     },
   },
-];
+]
 
 export const webFixture = {
   theme: {
@@ -125,4 +125,4 @@ export const webFixture = {
       elements: pageIndexFixture,
     },
   },
-};
+}

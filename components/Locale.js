@@ -1,18 +1,18 @@
 // @flow
-import createReactContext, { type Context } from 'create-react-context';
+import createReactContext, { type Context } from 'create-react-context'
 
 type Value = {|
   locale: string,
   supportedLocales: Array<string>,
-|};
+|}
 
 const value = {
   locale: DEFAULT_LOCALE,
   supportedLocales: [DEFAULT_LOCALE],
-};
+}
 
-const LocaleContext: Context<Value> = createReactContext(value);
+const LocaleContext: Context<Value> = createReactContext(value)
 
-export const LocaleProvider = LocaleContext.Provider;
+export const LocaleProvider = LocaleContext.Provider
 
-export default LocaleContext.Consumer;
+export default LocaleContext.Consumer

@@ -1,8 +1,8 @@
 // @flow
-import * as React from 'react';
-import type { Theme } from './types';
-import openColor from './openColor';
-import typography from './typography';
+import * as React from 'react'
+import type { Theme } from './types'
+import openColor from './openColor'
+import typography from './typography'
 
 export const browserTheme: Theme = {
   typography: typography({
@@ -88,7 +88,7 @@ export const browserTheme: Theme = {
       </svg>
     ),
   },
-};
+}
 
 export const browserThemeDark: Theme = {
   ...browserTheme,
@@ -109,4 +109,4 @@ export const browserThemeDark: Theme = {
     ...browserTheme.text,
     color: 'white',
   },
-};
+}

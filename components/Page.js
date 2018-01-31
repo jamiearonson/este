@@ -1,19 +1,19 @@
 // @flow
-import A from './A';
-import AppError from './AppError';
-import Box from './Box';
-import Head from 'next/head';
-import LoadingBar from './LoadingBar';
-import MainNav from './MainNav';
-import * as React from 'react';
-import SwitchLocale from './SwitchLocale';
-import Text from './Text';
-import { FormattedMessage } from 'react-intl';
-import { ThemeProvider } from './Theme';
-import { BaselineProvider } from './Baseline';
-import { browserTheme, browserThemeDark } from '../themes/browserTheme';
-import PageStyle from './PageStyle';
-import MetaViewport from './MetaViewport';
+import A from './A'
+import AppError from './AppError'
+import Box from './Box'
+import Head from 'next/head'
+import LoadingBar from './LoadingBar'
+import MainNav from './MainNav'
+import * as React from 'react'
+import SwitchLocale from './SwitchLocale'
+import Text from './Text'
+import { FormattedMessage } from 'react-intl'
+import { ThemeProvider } from './Theme'
+import { BaselineProvider } from './Baseline'
+import { browserTheme, browserThemeDark } from '../themes/browserTheme'
+import PageStyle from './PageStyle'
+import MetaViewport from './MetaViewport'
 
 // yarn favicon
 const Favicons = () => [
@@ -45,7 +45,7 @@ const Favicons = () => [
     name="msapplication-config"
     content="/static/favicons/browserconfig.xml"
   />,
-];
+]
 
 const Container = ({ children }) => (
   <Box
@@ -58,14 +58,14 @@ const Container = ({ children }) => (
   >
     {children}
   </Box>
-);
+)
 
 // Flex 1 to make footer sticky.
 const Body = ({ children }) => (
   <Box flex={1} maxWidth={30} paddingTop={2}>
     {children}
   </Box>
-);
+)
 
 const Footer = () => (
   <Text
@@ -82,18 +82,18 @@ const Footer = () => (
     {', '}
     <SwitchLocale />
   </Text>
-);
+)
 
 type PageProps = {|
   title: string,
   children?: React.Node,
-|};
+|}
 
 const Page = ({ title, children }: PageProps) => {
   // TODO: Persist in user settings.
-  const darkEnabled = true;
-  const theme = darkEnabled ? browserThemeDark : browserTheme;
-  const pageBackgroundColor = theme.colors[theme.page.backgroundColor];
+  const darkEnabled = true
+  const theme = darkEnabled ? browserThemeDark : browserTheme
+  const pageBackgroundColor = theme.colors[theme.page.backgroundColor]
   return (
     <ThemeProvider value={theme}>
       <BaselineProvider>
@@ -112,7 +112,7 @@ const Page = ({ title, children }: PageProps) => {
         </Container>
       </BaselineProvider>
     </ThemeProvider>
-  );
-};
+  )
+}
 
-export default Page;
+export default Page

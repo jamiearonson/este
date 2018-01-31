@@ -1,8 +1,8 @@
 // @flow
-import * as React from 'react';
-import Box from '../../components/Box';
-import Set from '../../components/Set';
-import { createExpectRender } from './utils';
+import * as React from 'react'
+import Box from '../../components/Box'
+import Set from '../../components/Set'
+import { createExpectRender } from './utils'
 
 const theme = {
   typography: {
@@ -24,19 +24,19 @@ const theme = {
     horizontalSpaceBetween: 0.5,
     verticalSpaceBetween: 1,
   },
-};
+}
 
-const expectRender = createExpectRender(theme);
+const expectRender = createExpectRender(theme)
 
-const onChange = () => {};
+const onChange = () => {}
 
 test('empty set has default marginBottom 1', () => {
-  expectRender(() => <Set />);
-});
+  expectRender(() => <Set />)
+})
 
 test('set with one item', () => {
-  expectRender(() => <Set>a</Set>);
-});
+  expectRender(() => <Set>a</Set>)
+})
 
 test('set with two items', () => {
   expectRender(() => (
@@ -44,8 +44,8 @@ test('set with two items', () => {
       <Box>a</Box>
       <Box>b</Box>
     </Set>
-  ));
-});
+  ))
+})
 
 test('set with two items and custom spaceBetween', () => {
   expectRender(() => (
@@ -53,12 +53,12 @@ test('set with two items and custom spaceBetween', () => {
       <Box>a</Box>
       <Box>b</Box>
     </Set>
-  ));
-});
+  ))
+})
 
 test('vertical set with one item', () => {
-  expectRender(() => <Set vertical>a</Set>);
-});
+  expectRender(() => <Set vertical>a</Set>)
+})
 
 test('vertical set with two items', () => {
   expectRender(() => (
@@ -66,8 +66,8 @@ test('vertical set with two items', () => {
       <Box>a</Box>
       <Box>b</Box>
     </Set>
-  ));
-});
+  ))
+})
 
 test('vertical set with two items and custom spaceBetween', () => {
   expectRender(() => (
@@ -75,5 +75,5 @@ test('vertical set with two items and custom spaceBetween', () => {
       <Box>a</Box>
       <Box>b</Box>
     </Set>
-  ));
-});
+  ))
+})

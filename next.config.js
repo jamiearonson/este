@@ -1,8 +1,8 @@
 // This file is not going through babel transformation.
 // So, we write it in vanilla JS.
 // (But you could use ES2015 features supported by your Node.js version)
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const { assocPath } = require('ramda');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+const { assocPath } = require('ramda')
 
 module.exports = {
   webpack: (config, { dev }) => {
@@ -13,7 +13,7 @@ module.exports = {
           analyzerPort: 8888,
           openAnalyzer: true,
         }),
-      );
+      )
     }
 
     // We are using eslint-loader in webpack to lint only imported modules.
@@ -27,9 +27,9 @@ module.exports = {
         // Eslint errors are shown in console for dev, yay :-)
         emitWarning: dev,
       },
-    };
+    }
 
-    const rules = [].concat(eslintRule, config.module.rules);
-    return assocPath(['module', 'rules'], rules, config);
+    const rules = [].concat(eslintRule, config.module.rules)
+    return assocPath(['module', 'rules'], rules, config)
   },
-};
+}

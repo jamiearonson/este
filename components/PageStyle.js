@@ -1,13 +1,13 @@
 // @flow
-import * as React from 'react';
-import Head from 'next/head';
+import * as React from 'react'
+import Head from 'next/head'
 
 // - Emulate React Native
 // - https://github.com/twbs/bootstrap/blob/v4-dev/scss/_reboot.scss
 
 type PageStyleProps = {
   backgroundColor: string,
-};
+}
 
 const PageStyle = ({ backgroundColor }: PageStyleProps) => (
   <div>
@@ -28,6 +28,6 @@ const PageStyle = ({ backgroundColor }: PageStyleProps) => (
       }
     `}</style>
   </div>
-);
+)
 
-export default PageStyle;
+export default PageStyle

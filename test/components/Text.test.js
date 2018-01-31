@@ -1,7 +1,7 @@
 // @flow
-import * as React from 'react';
-import Text from '../../components/Text';
-import { createExpectRender } from './utils';
+import * as React from 'react'
+import Text from '../../components/Text'
+import { createExpectRender } from './utils'
 
 const theme = {
   typography: {
@@ -28,39 +28,39 @@ const theme = {
       fixFontSmoothing: true,
     },
   },
-};
+}
 
-const expectRender = createExpectRender(theme);
+const expectRender = createExpectRender(theme)
 
 test('text without props', () => {
-  expectRender(() => <Text />);
-});
+  expectRender(() => <Text />)
+})
 
 test('props', () => {
-  expectRender(() => <Text align="left" />);
-  expectRender(() => <Text bold />);
-  expectRender(() => <Text color="primary" />);
-  expectRender(() => <Text decoration="underline" />);
-  expectRender(() => <Text fontFamily="arial" />);
-  expectRender(() => <Text italic />);
-  expectRender(() => <Text lineHeight={10} />);
-  expectRender(() => <Text size={1} />);
-});
+  expectRender(() => <Text align="left" />)
+  expectRender(() => <Text bold />)
+  expectRender(() => <Text color="primary" />)
+  expectRender(() => <Text decoration="underline" />)
+  expectRender(() => <Text fontFamily="arial" />)
+  expectRender(() => <Text italic />)
+  expectRender(() => <Text lineHeight={10} />)
+  expectRender(() => <Text size={1} />)
+})
 
 test('fix fontSmoothing', () => {
   // Fix.
-  expectRender(() => <Text color="primary" backgroundColor="black" />);
+  expectRender(() => <Text color="primary" backgroundColor="black" />)
   // Don't fix.
-  expectRender(() => <Text color="primary" backgroundColor="white" />);
-  expectRender(() => <Text color="primary" />);
-});
+  expectRender(() => <Text color="primary" backgroundColor="white" />)
+  expectRender(() => <Text color="primary" />)
+})
 
 test('lineHeight ensures vertical rhythm', () => {
-  expectRender(() => <Text size={4} />);
-  expectRender(() => <Text size={5} />);
-  expectRender(() => <Text size={16} />);
-  expectRender(() => <Text size={17} />);
-});
+  expectRender(() => <Text size={4} />)
+  expectRender(() => <Text size={5} />)
+  expectRender(() => <Text size={16} />)
+  expectRender(() => <Text size={17} />)
+})
 
 test('styles are inherited', () => {
   expectRender(() => (
@@ -73,5 +73,5 @@ test('styles are inherited', () => {
       </Text>
       <Text>.</Text>
     </Text>
-  ));
-});
+  ))
+})

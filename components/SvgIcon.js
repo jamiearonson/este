@@ -1,14 +1,14 @@
 // @flow
-import * as React from 'react';
-import Text, { computeFontSizeAndLineHeight, type TextProps } from './Text';
-import Theme from './Theme';
+import * as React from 'react'
+import Text, { computeFontSizeAndLineHeight, type TextProps } from './Text'
+import Theme from './Theme'
 
 //  - flaticon.com
 //  - thenounproject.com
 
 export type SvgIconProps = {
   svg: React.Element<any>,
-} & TextProps;
+} & TextProps
 
 class SvgIcon extends React.PureComponent<SvgIconProps> {
   render() {
@@ -21,12 +21,12 @@ class SvgIcon extends React.PureComponent<SvgIconProps> {
             size = 0,
             style,
             ...props
-          } = this.props;
+          } = this.props
           const { fontSize, lineHeight } = computeFontSizeAndLineHeight(
             theme,
             size,
-          );
-          const top = (lineHeight - fontSize) / 2;
+          )
+          const top = (lineHeight - fontSize) / 2
 
           return (
             <Text
@@ -44,11 +44,11 @@ class SvgIcon extends React.PureComponent<SvgIconProps> {
                 ...style,
               }}
             />
-          );
+          )
         }}
       </Theme>
-    );
+    )
   }
 }
 
-export default SvgIcon;
+export default SvgIcon

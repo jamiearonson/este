@@ -1,5 +1,5 @@
 // @flow
-import css from 'styled-jsx/css';
+import css from 'styled-jsx/css'
 
 // Copy pasted from node_modules/draft-js/dist/Draft.css
 // TODO: Investigate whether there is Babel plugin to inline it.
@@ -173,4 +173,4 @@ export default css`
   .public-DraftStyleDefault-depth4.public-DraftStyleDefault-reset {
     counter-reset: ol4;
   }
-`;
+`

@@ -1,14 +1,14 @@
 // @flow
-import * as React from 'react';
-import { createFragmentContainer, graphql } from 'react-relay';
-import Box from './Box';
-import type { WebList_viewer } from './__generated__/WebList_viewer.graphql';
-import WebListItem from './WebListItem';
+import * as React from 'react'
+import { createFragmentContainer, graphql } from 'react-relay'
+import Box from './Box'
+import type { WebList_viewer } from './__generated__/WebList_viewer.graphql'
+import WebListItem from './WebListItem'
 
 type Props = {
   viewer: WebList_viewer,
   userId: string,
-};
+}
 
 // Why edges and nodes? Because Relay does not mix meta data with data.
 // https://facebook.github.io/relay/docs/graphql-connections.html
@@ -27,7 +27,7 @@ const WebList = ({ viewer, userId }: Props) => (
           ),
       )}
   </Box>
-);
+)
 
 // Always use first or last on connections.
 // https://github.com/facebook/relay/issues/1201#issuecomment-224366807
@@ -47,4 +47,4 @@ export default createFragmentContainer(
       }
     }
   `,
-);
+)

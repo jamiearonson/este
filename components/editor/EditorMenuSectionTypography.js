@@ -1,10 +1,10 @@
 // @flow
-import * as React from 'react';
-import EditorMenuSection from './EditorMenuSection';
-import EditorMenuButton from './EditorMenuButton';
-import EditorMenuInputs from './EditorMenuInputs';
-import type { Web, Typography, EditorDispatch } from './Editor';
-import { validateSchema } from './jsonSchema';
+import * as React from 'react'
+import EditorMenuSection from './EditorMenuSection'
+import EditorMenuButton from './EditorMenuButton'
+import EditorMenuInputs from './EditorMenuInputs'
+import type { Web, Typography, EditorDispatch } from './Editor'
+import { validateSchema } from './jsonSchema'
 
 export const lineHeightSchema = {
   type: 'number',
@@ -14,7 +14,7 @@ export const lineHeightSchema = {
   // multipleOf: 0.1,
   // multipleOfPrecision does not work as well. 1.25 is valid. Wtf.
   multipleOfPrecision: 0.1,
-};
+}
 
 const typographySchema = {
   type: 'object',
@@ -45,14 +45,14 @@ const typographySchema = {
     lineHeight: lineHeightSchema,
     fontFamily: { type: 'string', minLength: 2, maxLength: 256 },
   },
-};
+}
 
-validateSchema(typographySchema);
+validateSchema(typographySchema)
 
 type EditorMenuSectionTypographyProps = {|
   web: Web,
   dispatch: EditorDispatch,
-|};
+|}
 
 class EditorMenuSectionTypography extends React.PureComponent<
   EditorMenuSectionTypographyProps,
@@ -61,8 +61,8 @@ class EditorMenuSectionTypography extends React.PureComponent<
     this.props.dispatch({
       type: 'SET_WEB_THEME_TYPOGRAPHY',
       typography,
-    });
-  };
+    })
+  }
 
   render() {
     return (
@@ -74,8 +74,8 @@ class EditorMenuSectionTypography extends React.PureComponent<
           object={this.props.web.theme.typography}
         />
       </EditorMenuSection>
-    );
+    )
   }
 }
 
-export default EditorMenuSectionTypography;
+export default EditorMenuSectionTypography

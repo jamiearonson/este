@@ -1,26 +1,26 @@
 // @flow
-import * as React from 'react';
-import LocaleLink, { type LocaleLinkBaseProps } from './LocaleLink';
-import Text, { type TextProps } from './Text';
-import { withRouter } from 'next/router';
+import * as React from 'react'
+import LocaleLink, { type LocaleLinkBaseProps } from './LocaleLink'
+import Text, { type TextProps } from './Text'
+import { withRouter } from 'next/router'
 
-export type AProps = LocaleLinkBaseProps & TextProps;
+export type AProps = LocaleLinkBaseProps & TextProps
 
 type State = {
   hover: boolean,
-};
+}
 
 // Not pure, because I am not sure how withRouter works.
 class A extends React.Component<AProps & { router: Object }, State> {
-  state = { hover: false };
+  state = { hover: false }
 
   handleMouseEnter = () => {
-    this.setState({ hover: true });
-  };
+    this.setState({ hover: true })
+  }
 
   handleMouseLeave = () => {
-    this.setState({ hover: false });
-  };
+    this.setState({ hover: false })
+  }
 
   render() {
     const {
@@ -30,10 +30,10 @@ class A extends React.Component<AProps & { router: Object }, State> {
       replace,
       router,
       ...props
-    } = this.props;
+    } = this.props
     const isActive =
-      typeof href === 'object' && href.pathname === router.pathname;
-    const decoration = this.state.hover || isActive ? 'underline' : 'none';
+      typeof href === 'object' && href.pathname === router.pathname
+    const decoration = this.state.hover || isActive ? 'underline' : 'none'
 
     return (
       <LocaleLink href={href} prefetch={prefetch} replace={replace}>
@@ -46,10 +46,10 @@ class A extends React.Component<AProps & { router: Object }, State> {
           {...props}
         />
       </LocaleLink>
-    );
+    )
   }
 }
 
-const AWithRouter: React.ComponentType<AProps> = withRouter(A);
+const AWithRouter: React.ComponentType<AProps> = withRouter(A)
 
-export default AWithRouter;
+export default AWithRouter

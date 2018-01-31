@@ -1,46 +1,46 @@
 // @flow
-import * as React from 'react';
-import Form from './Form';
-import { CreateButton } from './buttons';
-import TextInputBig from './TextInputBig';
-import { FormattedMessage } from 'react-intl';
-import Text from './Text';
-import Set from './Set';
-import CreateWebMutation from '../mutations/CreateWebMutation';
-import Mutate, { clientMutationId } from './Mutate';
-import * as validation from '../graphcool/lib/validation';
-import ValidationError from './ValidationError';
-import { validateWeb } from '../graphcool/functions/createWeb';
+import * as React from 'react'
+import Form from './Form'
+import { CreateButton } from './buttons'
+import TextInputBig from './TextInputBig'
+import { FormattedMessage } from 'react-intl'
+import Text from './Text'
+import Set from './Set'
+import CreateWebMutation from '../mutations/CreateWebMutation'
+import Mutate, { clientMutationId } from './Mutate'
+import * as validation from '../graphcool/lib/validation'
+import ValidationError from './ValidationError'
+import { validateWeb } from '../graphcool/functions/createWeb'
 
 type Props = {
   userId: string,
-};
+}
 
 type Fields = {
   name: string,
-};
+}
 
 type State = {
   pending: boolean,
   validationErrors: validation.ValidationErrors<Fields>,
-} & Fields;
+} & Fields
 
 const initialState = {
   name: '',
   pending: false,
   validationErrors: {},
-};
+}
 
 class CreateWeb extends React.PureComponent<Props, State> {
-  state = initialState;
+  state = initialState
 
   handleCompleted = () => {
-    this.setState(initialState);
-  };
+    this.setState(initialState)
+  }
 
   handleError = () => {
-    this.setState({ pending: false });
-  };
+    this.setState({ pending: false })
+  }
 
   // Using an existential type is ok. It works well.
   createWeb = (mutate: *) => () => {
@@ -51,28 +51,28 @@ class CreateWeb extends React.PureComponent<Props, State> {
         ownerId: this.props.userId,
         clientMutationId: clientMutationId(),
       },
-    };
-
-    const validationErrors = validateWeb(variables.input);
-    if (validationErrors) {
-      this.setState({ validationErrors });
-      return;
     }
 
-    this.setState({ pending: true });
+    const validationErrors = validateWeb(variables.input)
+    if (validationErrors) {
+      this.setState({ validationErrors })
+      return
+    }
+
+    this.setState({ pending: true })
     mutate(
       CreateWebMutation.commit(this.props.userId),
       variables,
       this.handleCompleted,
       this.handleError,
-    );
-  };
+    )
+  }
 
   render() {
     return (
       <Mutate>
         {mutate => {
-          const { pending, validationErrors } = this.state;
+          const { pending, validationErrors } = this.state
           return (
             <Form onSubmit={this.createWeb(mutate)}>
               <TextInputBig
@@ -99,11 +99,11 @@ class CreateWeb extends React.PureComponent<Props, State> {
                 />
               </Set>
             </Form>
-          );
+          )
         }}
       </Mutate>
-    );
+    )
   }
 }
 
-export default CreateWeb;
+export default CreateWeb

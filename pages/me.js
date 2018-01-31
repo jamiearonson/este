@@ -1,22 +1,22 @@
 // @flow
-import Image from '../components/Image';
-import P from '../components/P';
-import Page from '../components/Page';
-import * as React from 'react';
-import Set from '../components/Set';
-import Button from '../components/Button';
-import Baseline from '../components/Baseline';
-import ToggleDark from '../components/ToggleDark';
-import app from '../components/app';
-import gravatar from 'gravatar';
-import { titles } from '../lib/sitemap';
-import type { mePageQueryResponse } from './__generated__/mePageQuery.graphql';
-import { SignOutButton } from '../components/buttons';
-import { graphql } from 'react-relay';
-import Heading from '../components/Heading';
-import { FormattedMessage } from 'react-intl';
-import { deleteCookie } from '../lib/cookie';
-import Box from '../components/Box';
+import Image from '../components/Image'
+import P from '../components/P'
+import Page from '../components/Page'
+import * as React from 'react'
+import Set from '../components/Set'
+import Button from '../components/Button'
+import Baseline from '../components/Baseline'
+import ToggleDark from '../components/ToggleDark'
+import app from '../components/app'
+import gravatar from 'gravatar'
+import { titles } from '../lib/sitemap'
+import type { mePageQueryResponse } from './__generated__/mePageQuery.graphql'
+import { SignOutButton } from '../components/buttons'
+import { graphql } from 'react-relay'
+import Heading from '../components/Heading'
+import { FormattedMessage } from 'react-intl'
+import { deleteCookie } from '../lib/cookie'
+import Box from '../components/Box'
 
 const getGravatarUrl = email =>
   gravatar.url(email, {
@@ -24,19 +24,19 @@ const getGravatarUrl = email =>
     protocol: 'https',
     r: 'x',
     s: '100',
-  });
+  })
 
 const signOut = () => {
-  deleteCookie();
+  deleteCookie()
   // Force full reload. Purging Relay environment and Redux store is not enough.
   // Sensitive session data can be stored in NEXT_PROPS or elsewhere.
   // eslint-disable-next-line no-undef
-  window.location.href = '/';
-};
+  window.location.href = '/'
+}
 
 const Me = ({ data, intl }) => {
-  const { viewer }: mePageQueryResponse = data;
-  const email = viewer.user && viewer.user.email;
+  const { viewer }: mePageQueryResponse = data
+  const email = viewer.user && viewer.user.email
   return (
     <Page title={intl.formatMessage(titles.me)}>
       {email != null && (
@@ -67,8 +67,8 @@ const Me = ({ data, intl }) => {
         <ToggleDark />
       </Set>
     </Page>
-  );
-};
+  )
+}
 
 export default app(Me, {
   requireAuth: true,
@@ -81,4 +81,4 @@ export default app(Me, {
       }
     }
   `,
-});
+})

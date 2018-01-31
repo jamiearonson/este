@@ -1,7 +1,7 @@
 // @flow
-import * as React from 'react';
-import Box, { type BoxProps } from './Box';
-import Theme from './Theme';
+import * as React from 'react'
+import Box, { type BoxProps } from './Box'
+import Theme from './Theme'
 
 // Something like Fieldset, but for any component and with axis and spacing.
 // It's Box with flexDirection, flexWrap, spacing, and default marginBottom.
@@ -9,26 +9,26 @@ import Theme from './Theme';
 export type SetProps = {
   spaceBetween?: number,
   vertical?: boolean,
-} & BoxProps;
+} & BoxProps
 
 class Set extends React.PureComponent<SetProps> {
   static Space = ({ spaceBetween }: *) => (
     <Box height={spaceBetween} width={spaceBetween} />
-  );
+  )
 
   // Believe or not, this is the most easy and robust approach for inner spacing.
   static addSpaceBetween = (children: *, spaceBetween: *) => {
-    const childrenArray = React.Children.toArray(children);
-    const spacedArray = [];
+    const childrenArray = React.Children.toArray(children)
+    const spacedArray = []
     childrenArray.forEach((child, i) => {
-      spacedArray.push(child);
-      if (childrenArray.length === 1) return;
-      if (i === childrenArray.length - 1) return;
+      spacedArray.push(child)
+      if (childrenArray.length === 1) return
+      if (i === childrenArray.length - 1) return
       // eslint-disable-next-line react/no-array-index-key
-      spacedArray.push(<Set.Space key={`s${i}`} spaceBetween={spaceBetween} />);
-    });
-    return spacedArray;
-  };
+      spacedArray.push(<Set.Space key={`s${i}`} spaceBetween={spaceBetween} />)
+    })
+    return spacedArray
+  }
 
   render() {
     return (
@@ -44,7 +44,7 @@ class Set extends React.PureComponent<SetProps> {
             flexWrap = 'wrap',
             marginBottom = theme.set.marginBottom,
             ...props
-          } = this.props;
+          } = this.props
 
           return (
             <Box
@@ -57,11 +57,11 @@ class Set extends React.PureComponent<SetProps> {
                 ? children
                 : Set.addSpaceBetween(children, spaceBetween)}
             </Box>
-          );
+          )
         }}
       </Theme>
-    );
+    )
   }
 }
 
-export default Set;
+export default Set

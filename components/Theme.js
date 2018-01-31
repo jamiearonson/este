@@ -1,14 +1,14 @@
 // @flow
-import createReactContext, { type Context } from 'create-react-context';
-import type { Theme } from '../themes/types';
-import { browserThemeDark } from '../themes/browserTheme';
+import createReactContext, { type Context } from 'create-react-context'
+import type { Theme } from '../themes/types'
+import { browserThemeDark } from '../themes/browserTheme'
 
-type Value = Theme;
+type Value = Theme
 
-const value = browserThemeDark;
+const value = browserThemeDark
 
-const ThemeContext: Context<Value> = createReactContext(value);
+const ThemeContext: Context<Value> = createReactContext(value)
 
-export const ThemeProvider = ThemeContext.Provider;
+export const ThemeProvider = ThemeContext.Provider
 
-export default ThemeContext.Consumer;
+export default ThemeContext.Consumer

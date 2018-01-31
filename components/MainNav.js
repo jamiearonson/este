@@ -1,10 +1,10 @@
 // @flow
-import * as React from 'react';
-import A from './A';
-import Box from './Box';
-import { titles } from '../lib/sitemap';
-import { FormattedMessage } from 'react-intl';
-import IsAuthenticated from './IsAuthenticated';
+import * as React from 'react'
+import A from './A'
+import Box from './Box'
+import { titles } from '../lib/sitemap'
+import { FormattedMessage } from 'react-intl'
+import IsAuthenticated from './IsAuthenticated'
 
 const MainNavA = ({ href, title }) => (
   <A
@@ -18,7 +18,7 @@ const MainNavA = ({ href, title }) => (
   >
     <FormattedMessage {...title} />
   </A>
-);
+)
 
 const MainNav = () => (
   <Box
@@ -39,6 +39,6 @@ const MainNav = () => (
       }
     </IsAuthenticated>
   </Box>
-);
+)
 
-export default MainNav;
+export default MainNav

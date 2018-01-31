@@ -1,7 +1,7 @@
 // @flow
-import * as React from 'react';
-import type { Theme } from './Editor';
-import { validateSchema } from './jsonSchema';
+import * as React from 'react'
+import type { Theme } from './Editor'
+import { validateSchema } from './jsonSchema'
 
 // Simplified components/Box.js
 // - less props and logic
@@ -10,7 +10,7 @@ import { validateSchema } from './jsonSchema';
 // - JSON schema instead of Flow
 
 // TODO: Add rgb/rgba regex or validate manually via Color lib.
-export const colorSchemaType = { type: 'string' };
+export const colorSchemaType = { type: 'string' }
 
 // TODO: Improve with JSON Schema draft 7 for full CSS compliance.
 export const boxStyleSchema = {
@@ -100,9 +100,9 @@ export const boxStyleSchema = {
     opacity: { type: 'number' },
     overflow: { type: 'string', enum: ['visible', 'hidden', 'scroll'] },
   },
-};
+}
 
-validateSchema(boxStyleSchema);
+validateSchema(boxStyleSchema)
 
 // Use plain number for vertical and horizontal rhythm based on lineHeight.
 const rhythmProps = [
@@ -124,49 +124,49 @@ const rhythmProps = [
   'top',
   'bottom',
   'right',
-];
+]
 
 // Enforce React Native Flexbox behavior.
 // https://microsoft.github.io/reactxp/docs/styles.html#flexbox-style-attributes
 // https://github.com/Microsoft/reactxp/blob/master/src/web/Styles.ts
 const computeFlex = value => {
   // p 1 auto
-  if (value > 0) return [value, 1];
+  if (value > 0) return [value, 1]
   // 0 -n auto
-  if (value < 0) return [0, -value];
+  if (value < 0) return [0, -value]
   // 0 0 auto
-  return [0, 0];
-};
+  return [0, 0]
+}
 
 export const computeBoxStyle = (theme: Theme, style: Object) =>
   Object.keys(style).reduce((computedStyle, prop) => {
-    let value = style[prop];
+    let value = style[prop]
 
     if (prop === 'flex') {
-      const [grow, shrink] = computeFlex(value);
-      const { flexGrow = grow, flexShrink = shrink } = style;
-      return { ...computedStyle, flexGrow, flexShrink };
+      const [grow, shrink] = computeFlex(value)
+      const { flexGrow = grow, flexShrink = shrink } = style
+      return { ...computedStyle, flexGrow, flexShrink }
     }
 
     const isRhythmProp =
-      typeof value === 'number' && rhythmProps.indexOf(prop) !== -1;
+      typeof value === 'number' && rhythmProps.indexOf(prop) !== -1
     if (isRhythmProp) {
-      value *= theme.typography.fontSize * theme.typography.lineHeight;
+      value *= theme.typography.fontSize * theme.typography.lineHeight
     }
 
-    return { ...computedStyle, [prop]: value };
-  }, {});
+    return { ...computedStyle, [prop]: value }
+  }, {})
 
 export type EditorElementBoxProps = {
   children?: React.Node,
   style?: Object,
   theme: Theme,
-};
+}
 
 class EditorElementBox extends React.PureComponent<EditorElementBoxProps> {
   render() {
-    const { style, theme, children, ...props } = this.props;
-    const computedStyle = style && computeBoxStyle(theme, style);
+    const { style, theme, children, ...props } = this.props
+    const computedStyle = style && computeBoxStyle(theme, style)
 
     return (
       <div {...props} style={computedStyle}>
@@ -187,8 +187,8 @@ class EditorElementBox extends React.PureComponent<EditorElementBoxProps> {
           }
         `}</style>
       </div>
-    );
+    )
   }
 }
 
-export default EditorElementBox;
+export default EditorElementBox
